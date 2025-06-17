@@ -1,2 +1,2 @@
 # ApexIntern
-it contains some basic tasks which are part of learning 
+it contains some basic tasks which are part of learning web development 
