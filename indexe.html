@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basics of Web Development</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Basics of Web Development</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Objective:</h2>
+            <p>Learn and apply foundational HTML, CSS, and JavaScript concepts.</p>
+        </section>
+        <section>
+            <h2>Steps:</h2>
+            <ol>
+                <li>
+                    <strong>Create a Simple Webpage Using HTML:</strong>
+                    <p>Understand basic HTML elements and structure.</p>
+                </li>
+                <li>
+                    <strong>Style the Webpage Using CSS:</strong>
+                    <p>Learn how to apply styling with CSS.</p>
+                </li>
+                <li>
+                    <strong>Add Basic JavaScript for Interactivity:</strong>
+                    <p>Implement simple interactions using JavaScript.</p>
+                </li>
+            </ol>
+        </section>
+        <button id="alertButton">Click Me!</button>
+    </main>
+    <script>
+        document.getElementById("alertButton").addEventListener("click", function() {
+            alert("Hello! Welcome to Basics of Web Development.");
+        });
+    </script>
+</body>
+</html>
