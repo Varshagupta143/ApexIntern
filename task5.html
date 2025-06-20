@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>E-Commerce Web App</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    header {
+      background-color: #333;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+    header nav button {
+      background: #555;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      margin: 0 0.5em;
+      cursor: pointer;
+    }
+    header nav button:hover {
+      background: #777;
+    }
+    .page {
+      display: none;
+      padding: 2em;
+    }
+    .page.active {
+      display: block;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin: 0.5em 0;
+      padding: 0.5em;
+      border: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    li img {
+      max-width: 100px;
+      margin-right: 1em;
+    }
+    li button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      cursor: pointer;
+    }
+    li button:hover {
+      background-color: #218838;
+    }
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 1em;
+      margin-top: 2em;
+    }
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      header nav button {
+        display: block;
+        margin: 0.5em auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>E-Commerce Store</h1>
+    <nav>
+      <button onclick="showPage('home')">Home</button>
+      <button onclick="showPage('products')">Products</button>
+      <button onclick="showPage('cart')">Cart</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Home Section -->
+    <section id="home" class="page active">
+      <h2>Welcome to Our Store</h2>
+      <p>Explore our amazing collection of products at unbeatable prices!</p>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="page">
+      <h2>Our Products</h2>
+      <input type="text" id="searchInput" placeholder="Search products" oninput="searchProducts()">
+      <ul id="productList">
+        <li data-price="300">
+          <img data-src="https://via.placeholder.com/150" alt="Product A">
+          <span>Product A - $300</span>
+          <button onclick="addToCart('Product A', 300)">Add to Cart</button>
+        </li>
+        <li data-price="200">
+          <img data-src="https://via.placeholder.com/150" alt="Product B">
+          <span>Product B - $200</span>
+          <button onclick="addToCart('Product B', 200)">Add to Cart</button>
+        </li>
+        <li data-price="400">
+          <img data-src="https://via.placeholder.com/150" alt="Product C">
+          <span>Product C - $400</span>
+          <button onclick="addToCart('Product C', 400)">Add to Cart</button>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Cart Section -->
+    <section id="cart" class="page">
+      <h2>Your Cart</h2>
+      <ul id="cartList"></ul>
+      <p id="cartTotal">Total: $0</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 E-Commerce Store. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Navigation Functionality
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+    }
+
+    // Product Search
+    function searchProducts() {
+      const searchValue = document.getElementById('searchInput').value.toLowerCase();
+      const products = document.querySelectorAll('#productList li');
+      products.forEach(product => {
+        const text = product.textContent.toLowerCase();
+        product.style.display = text.includes(searchValue) ? '' : 'none';
+      });
+    }
+
+    // Cart Functionality
+    let cart = [];
+    function addToCart(productName, productPrice) {
+      cart.push({ name: productName, price: productPrice });
+      updateCart();
+    }
+    function updateCart() {
+      const cartList = document.getElementById('cartList');
+      const cartTotal = document.getElementById('cartTotal');
+      cartList.innerHTML = '';
+      let total = 0;
+
+      cart.forEach(item => {
+        total += item.price;
+        const li = document.createElement('li');
+        li.textContent = `${item.name} - $${item.price}`;
+        cartList.appendChild(li);
+      });
+      cartTotal.textContent = `Total: $${total}`;
+    }
+
+    // Lazy Loading for Images
+    document.addEventListener('DOMContentLoaded', () => {
+      const images = document.querySelectorAll('img[data-src]');
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+            observer.unobserve(img);
+          }
+        });
+      });
+
+      images.forEach(image => observer.observe(image));
+    });
+  </script>
+</body>
+</html>
