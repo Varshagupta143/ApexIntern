@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Combined Project</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #333;
+      padding: 1em;
+      text-align: center;
+    }
+    header button {
+      color: white;
+      background-color: #555;
+      border: none;
+      padding: 0.5em 1em;
+      cursor: pointer;
+      margin: 0 0.5em;
+    }
+    header button:hover {
+      background-color: #777;
+    }
+    .page {
+      display: none;
+      padding: 2em;
+    }
+    .page.active {
+      display: block;
+    }
+    #taskList li {
+      cursor: pointer;
+    }
+    #productList li {
+      margin: 0.5em 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <button onclick="showPage('portfolio')">Portfolio</button>
+    <button onclick="showPage('todo')">To-Do List</button>
+    <button onclick="showPage('products')">Product Listing</button>
+  </header>
+
+  <main>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="page active">
+      <h1>Portfolio</h1>
+      <p>Welcome to my portfolio! Explore my projects and skills.</p>
+      <div>
+        <h2>About</h2>
+        <p>I am a web developer skilled in HTML,
